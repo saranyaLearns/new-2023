@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year 2023</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url('bg.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgb(82, 82, 243);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container p{
+            font-size: 2em;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .show{
+            display: none;
+        }
+        #txtName{
+            height: 40px;
+            width: 250px;
+            border-radius: 10px;
+            border: 2px solid blue;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #greeting{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to left, green,orange,green);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        button{
+            height: 30px;
+            width: 250px;
+            background-color: blue;
+            color: white;
+        }
+        button:hover{
+            background-color: rgb(82, 82, 243);
+            cursor: pointer;
+        }
+        #wish{
+            margin-top: 10px;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            background-image: url('sparkle.gif');
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 20px;
+            border: 2px solid white;
+            animation: text-animation 1s linear  infinite;
+        }
+        @keyframes text-animation{
+            0%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 0.5;
+                color: white;
+            }
+            80%{
+                opacity: 0.8;
+                color: blue;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+ /*countdown css start*/
+    .countdown{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .countdown div{
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-left: 10px;
+        font-size: 2em;
+        background-color: transparent;
+        backdrop-filter: blur(20px);
+        border: 2px solid rgb(13, 46, 190);
+        background-color: aliceblue;
+        box-shadow: 0 5px 3px white;
+        color: rgb(13, 46, 190);
+        text-shadow: 2px 2px black;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+    .countdown div h1{
+        font-size: 0.3em;
+        color: rgb(13, 46, 190);
+        text-shadow: 0 0 4px rgb(241, 236, 236);
+    }
+ /*countdown css end*/
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <p>Coutdown 2023</p>
+        <div class="countdown">
+            <div>
+                <span id="days"></span>
+                <h1>Days</h1>
+            </div>
+            <div>
+                <span id="hours"></span>
+                <h1>Hours</h1>
+            </div>
+            <div>
+                <span id="minutes"></span>
+                <h1>Minutes</h1>
+            </div>
+            <div>
+                <span id="seconds"></span>
+                <h1>Seconds</h1>
+            </div>
+        </div>
+
+        <div class="name" id="yourName">
+            <input type="text" id="txtName" placeholder="Provide Your Name">
+            <br>
+            <button onclick="show()">Click</button>
+        </div>
+        <div class="show" id="wish">
+            <h1>Happy New Year</h1>
+            <h2 id="greeting"></h2>
+            <br>
+        </div>
+    </div>
+    <script>
+ /*name  script start*/
+        function show(){
+        var txt=document.getElementById('txtName').value;
+        if(txt==0){
+            alert("Enter info");
+        }
+        else{
+            document.getElementById('greeting').innerHTML=txt;
+            document.getElementById('yourName').style.display="none";
+            document.getElementById('wish').style.display="block";
+        }
+    }
+ /*name script end*/
+
+ /*countdown script start*/
+    var celebration=new Date('Jan 01,2023 00:00:00');
+
+    function countdown(){
+        var today= new Date();
+        var different=celebration-today;
+
+        var seconds=1000;
+        var minutes=seconds * 60;
+        var hours=minutes * 60;
+        var days=hours * 24;
+
+    var d=Math.floor(different / (days));
+    var h=Math.floor((different % (days)) / (hours));
+    var m=Math.floor((different % (hours)) / (minutes));
+    var s=Math.floor((different % (minutes)) / (seconds));
+
+    document.getElementById("days").innerHTML=d;
+    document.getElementById("hours").innerHTML=h;
+    document.getElementById("minutes").innerHTML=m;
+    document.getElementById("seconds").innerHTML=s;
+
+    }
+
+    setInterval(()=>{
+        countdown();
+    }, 1000);
+ /*countdown script end*/
+
+    </script>
+</body>
+</html>
